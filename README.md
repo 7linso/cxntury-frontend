@@ -57,3 +57,12 @@ After that, I connected the frontend to the backend API. For this, I created:
 After manually confirming that the backend connection was ok (via simple console.log checks on res.data) I replaced all mock data with real API responses using useEffect and useState. Later this logic was moved into custom hooks to improve reusability and keep components cleaner.
 
 I also implemented basic error handling using state and conditional rendering. On top of that I added a few small UX improvements such as transitions and automatically scrolling to the top after a reset action. These weren’t part of the assignment but helped avoid constant manual page reloads during testing.
+
+--- 
+
+## Moving to Production
+
+After deploying the backend and verifying it locally using a production build, the frontend was built and hosted on Render as a static site.
+
+**Live demo:**  
+[https://cxntury-frontend.onrender.com](https://cxntury-frontend.onrender.com)
