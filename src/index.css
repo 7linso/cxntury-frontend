@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Sniglet", system-ui, sans-serif;
+    @apply bg-[#e1ffdead];
+  }
+}
