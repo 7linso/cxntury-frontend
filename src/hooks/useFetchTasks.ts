@@ -18,14 +18,21 @@ export const useFetchTasks = (): UseFetchTasksResult => {
 
       setTasks(Array.isArray(data) ? data : []);
     } catch (e: unknown) {
-      // console.error("Failed to check answer", e);
-
-      if (axios.isAxiosError(e) && e.code === "ECONNABORTED")
-        setError(
-          "Server is taking too long to respond. Please try again later."
-        );
-
-      setError("Something went wrong. Please try again later.");
+      if (axios.isAxiosError(e)) {
+        // timeout
+        if (e.code === "ECONNABORTED" || e.code === "ETIMEDOUT") {
+          setError(
+            "Server is taking too long to respond. Please try again later.",
+          );
+        }
+        // dead backend
+        else if (!e.response) {
+          setError("Cannot reach the server. Please try again later.");
+        }
+      } // general error message
+      else {
+        setError("Something went wrong. Please try again later.");
+      }
 
       setTasks([]);
     } finally {
